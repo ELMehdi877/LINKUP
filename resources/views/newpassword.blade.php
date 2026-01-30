@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LINKUP | Récupération</title>
+    <title>LINKUP | Sécurité</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -24,7 +24,7 @@
 
         .premium-card {
             animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            border-radius: 60px; /* Style ultra-arrondi comme ton dashboard */
+            border-radius: 60px;
             background: rgba(255, 255, 255, 0.98);
             box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.08);
             border: 1px solid rgba(255, 255, 255, 1);
@@ -69,45 +69,58 @@
 <body class="p-6">
 
     <div class="w-full max-w-[500px]">
-        <div class="premium-card p-12 relative overflow-hidden text-center">
+        <div class="premium-card p-10 lg:p-12 relative overflow-hidden text-center">
             
             <!-- Accents Visuels -->
-            <div class="absolute top-0 left-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl -ml-16 -mt-16 opacity-60"></div>
+            <div class="absolute top-0 left-0 w-32 h-32 bg-indigo-50 rounded-full blur-3xl -ml-16 -mt-16 opacity-60"></div>
 
             <header class="relative z-10">
-                <!-- Icône Lock Illustrative -->
+                <!-- Icône Lock -->
                 <div class="w-20 h-20 bg-gray-50 rounded-[30px] flex items-center justify-center mx-auto mb-8 shadow-inner border border-white">
-                    <span class="text-3xl icon-pulse">🔑</span>
+                    <span class="text-3xl icon-pulse">🔐</span>
                 </div>
 
-                <h1 class="text-3xl font-[800] text-gray-900 tracking-tighter mb-3">Mot de passe oublié ?</h1>
+                <h1 class="text-3xl font-[800] text-gray-900 tracking-tighter mb-3">Mise à jour sécurité</h1>
                 <p class="text-gray-400 font-medium px-4 leading-relaxed">
-                    Pas d'inquiétude. Entrez votre email pour recevoir un lien de réinitialisation sécurisé.
+                    Veuillez remplir les informations ci-dessous pour changer votre mot de passe.
                 </p>
             </header>
 
-            <form action="/checkEmail" method="POST" class="mt-10 space-y-6 text-left relative z-10">
-                @csrf
+            <!-- Formulaire avec les 3 champs demandés -->
+            <form action="#" method="POST" class="mt-10 space-y-5 text-left relative z-10">
                 
+                <!-- Champ 1 : Ancien mot de passe -->
                 <div>
-                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Votre adresse email</label>
-                    <input type="email" name="email" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="exemple@linkup.com" required>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Ancien mot de passe</label>
+                    <input type="password" name="old_password" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••••••" required>
                 </div>
 
-                <button type="submit" class="btn-black w-full py-5 text-white font-bold text-lg shadow-2xl shadow-gray-200">
-                    Valider
+                <!-- Champ 2 : Nouveau mot de passe -->
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Nouveau mot de passe</label>
+                    <input type="password" name="new_password" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••••••" required>
+                </div>
+
+                <!-- Champ 3 : Confirmer nouveau mot de passe -->
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Confirmer le nouveau</label>
+                    <input type="password" name="confirm_password" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-black w-full py-5 text-white font-bold text-lg shadow-2xl shadow-gray-200 mt-4">
+                    Mettre à jour
                 </button>
             </form>
 
             <div class="mt-10 pt-8 border-t border-gray-50 relative z-10">
-                <a href="{{ url('/login') }}" class="group flex items-center justify-center gap-2 text-sm font-bold text-gray-400 hover:text-black transition">
+                <a href="{{url('/login')}}" class="group flex items-center justify-center gap-2 text-sm font-bold text-gray-400 hover:text-black transition">
                     <span class="group-hover:-translate-x-1 transition-transform">←</span>
-                    Retour à la connexion
+                    Retour au profil
                 </a>
             </div>
         </div>
 
-        <!-- Footer Logo Teaser -->
+        <!-- Footer Logo -->
         <div class="mt-10 flex flex-col items-center gap-4 opacity-30">
             <div class="w-10 h-10 bg-black rounded-xl flex items-center justify-center">
                 <span class="text-white font-black text-sm">L</span>

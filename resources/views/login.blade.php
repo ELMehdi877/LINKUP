@@ -92,10 +92,11 @@
                 </form>
 
                 <div class="mt-10 pt-8 border-t border-gray-100">
-                    <p class="text-gray-400 text-sm font-medium">
-                        Nouveau ici ? 
-                        <a href="{{ url('/register') }}" class="text-black font-extrabold hover:underline ml-1">Rejoindre la communauté</a>
-                    </p>
+                    <a href="{{ url('/forgot') }}" class="text-gray-400 font-extrabold hover:underline ml-1">Mode de passe oublie</a>
+                    <spam >|</spam>
+                    <a href="{{ url('/register') }}" class="text-black font-extrabold hover:underline ml-1">Crée un compte</a>
+
+                    
                 </div>
             </div>
         </div>

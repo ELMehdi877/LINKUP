@@ -20,15 +20,17 @@ class AuthController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name'=>'required|min:3',
-            'email'=>'required|email',
-            'password'=>'required|min:6',
+            'name'=>['required','string', 'min:3'],
+            'email'=>['required', 'email', 'unique:users,email'],
+            'password'=>'required|min:6|confirmed',
         ]);
 
-        $userExiste = User::where('email', $request->email)->first();
-        if ($userExiste) {
-            return back()->with('error', 'Cet email existe déja');
-        }
+        // $userExiste = User::where('email', $request->email)->first();
+        // if ($userExiste) {
+        //     return back()->with('error', 'Cet email existe déja');
+        // }
+
+        
 
         // dd('Validation OK');
         $user = new User();
@@ -45,7 +47,7 @@ class AuthController extends Controller
     public function authenticate(Request $request){
         
         $request->validate([
-            'email/' => 'required|email',
+            'email' => ['required', 'string', 'email'],
             'password' => 'required'
         ]);
 
@@ -66,7 +68,7 @@ class AuthController extends Controller
 
     public function checkEmail(Request $request){
         $request->validate([
-            'email'=> 'required|email'
+            'email'=> ['required', 'string', 'email']
         ]);
 
         $userExiste = User::where('email', $request->email)->first();
@@ -74,7 +76,16 @@ class AuthController extends Controller
         if (!$userExiste) {
             return back()->with('error', 'Cet email n\'éxiste pas');
         }
-        return redirect('/newPassword');
+        return redirect('/changepassword');
+    }
+
+
+    public function newpassword(){
+        return view('newpassword');
+    }
+
+    public function updatePassword(Request $request){
+
     }
 
     public function dashboard(){

@@ -17,6 +17,9 @@ Route::post('/login', [AuthController::class, 'authenticate']);
 Route::get('/dashboard', [AuthController::class, 'dashboard']);
 Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/landingpage', [AuthController::class, 'landingpage']);
+Route::get('/forgot', [AuthController::class, 'forgot']);
+Route::post('/checkEmail', [AuthController::class, 'checkEmail']);
+Route::get('/changepassword', [AuthController::class, 'newpassword']);
 
 Route::get('/search', [SearchController::class, 'search']);
 Route::get('/profile', [SearchController::class, 'profile']);
