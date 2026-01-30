@@ -84,7 +84,7 @@
         </div>
 
         <div class="hidden lg:block mt-auto w-full pt-10 border-t border-gray-50 text-center">
-            <button class="text-[10px] font-black uppercase tracking-[0.2em] text-red-400 hover:text-red-500 transition">Logout</button>
+            <a href="{{url('/logout')}}" class="text-[10px] font-black uppercase tracking-[0.2em] text-red-400 hover:text-red-500 transition">Logout</a>
         </div>
     </aside>
 

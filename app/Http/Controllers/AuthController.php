@@ -55,12 +55,11 @@ class AuthController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Session::put('user', $user->id);
-            return redirect('/dashboard');
+            return redirect('/search');
         }
 
         return back()->with('error', 'Email ou mot de passe incorrect');
     }
-
 
     public function forgot(){
         return view('forgot');
@@ -74,8 +73,9 @@ class AuthController extends Controller
         $userExiste = User::where('email', $request->email)->first();
 
         if (!$userExiste) {
-            return back()->with('error', 'Cet email n\'éxiste pas');
+            return back()->with('error', 'Email incorrect');
         }
+        Session::put('user', $userExiste->id);
         return redirect('/changepassword');
     }
 
@@ -85,7 +85,15 @@ class AuthController extends Controller
     }
 
     public function updatePassword(Request $request){
+        $request->validate([
+            'new_password' => ['required', 'string', 'min:6', 'confirmed']
+        ]);
 
+        $userID = Session::get('user');
+        $user = User::find($userID);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+        return redirect('/login');
     }
 
     public function dashboard(){

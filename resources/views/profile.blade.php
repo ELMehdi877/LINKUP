@@ -74,10 +74,15 @@
         <div class="lg:col-span-4 space-y-8">
             <div class="bg-white squircle-md lg:squircle-lg p-8 shadow-premium border border-white">
                 <h3 class="text-xl font-bold mb-8">🔐 Sécurité</h3>
-                <form class="space-y-6">
+                <form action="/" class="space-y-6">
+                    @csrf
                     <div class="space-y-2">
                         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Mot de passe actuel</label>
-                        <input type="password" placeholder="••••••••" class="w-full px-6 py-4 input-field text-sm font-bold">
+                        <input type="password" name="new_password" placeholder="••••••••" class="w-full px-6 py-4 input-field text-sm font-bold">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Mot de passe actuel</label>
+                        <input type="password" name="new_password_confirmation" placeholder="••••••••" class="w-full px-6 py-4 input-field text-sm font-bold">
                     </div>
                     <button class="w-full bg-[#FF6B81] text-white py-5 squircle-md font-black text-xs uppercase tracking-widest shadow-xl shadow-red-200">Mettre à jour</button>
                 </form>

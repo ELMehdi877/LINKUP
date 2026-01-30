@@ -87,14 +87,8 @@
             </header>
 
             <!-- Formulaire avec les 3 champs demandés -->
-            <form action="#" method="POST" class="mt-10 space-y-5 text-left relative z-10">
-                
-                <!-- Champ 1 : Ancien mot de passe -->
-                <div>
-                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Ancien mot de passe</label>
-                    <input type="password" name="old_password" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••••••" required>
-                </div>
-
+            <form action="/new_password" method="POST" class="mt-10 space-y-5 text-left relative z-10">
+                @csrf
                 <!-- Champ 2 : Nouveau mot de passe -->
                 <div>
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Nouveau mot de passe</label>
@@ -104,7 +98,7 @@
                 <!-- Champ 3 : Confirmer nouveau mot de passe -->
                 <div>
                     <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Confirmer le nouveau</label>
-                    <input type="password" name="confirm_password" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••••••" required>
+                    <input type="password" name="new_password_confirmation" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••••••" required>
                 </div>
 
                 <button type="submit" class="btn-black w-full py-5 text-white font-bold text-lg shadow-2xl shadow-gray-200 mt-4">

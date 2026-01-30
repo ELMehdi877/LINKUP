@@ -21,5 +21,7 @@ Route::get('/forgot', [AuthController::class, 'forgot']);
 Route::post('/checkEmail', [AuthController::class, 'checkEmail']);
 Route::get('/changepassword', [AuthController::class, 'newpassword']);
 
+Route::post('/new_password' ,[AuthController::class, 'updatePassword']);
+
 Route::get('/search', [SearchController::class, 'search']);
 Route::get('/profile', [SearchController::class, 'profile']);
