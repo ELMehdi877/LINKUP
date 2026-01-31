@@ -57,3 +57,55 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+# LINKUP – Plateforme Sociale Sécurisée
+
+LINKUP est une application web développée pour permettre aux utilisateurs de créer un espace sécurisé où ils peuvent s'inscrire, gérer leur profil et retrouver facilement d'autres membres grâce à un système de recherche performant.
+
+Ce projet est conçu pour fournir une **base solide et professionnelle** pour une plateforme sociale simple, sécurisée et évolutive.
+
+---
+
+## 🏗️ Contexte du projet
+
+La société **LINKUP** est une jeune startup qui souhaite créer une plateforme simple et efficace. Les objectifs principaux sont :
+
+- Offrir un espace sécurisé pour les utilisateurs.
+- Permettre la personnalisation du profil.
+- Faciliter la recherche et la connexion entre membres via pseudo ou email.
+
+---
+
+## 🚀 Fonctionnalités principales
+
+### 🔐 Authentification et Gestion des Utilisateurs
+
+- Inscription et connexion sécurisées.
+- Gestion de la récupération de mot de passe.
+
+### 👤 Gestion du Profil Utilisateur
+
+- Modification du pseudo unique, nom, prénom, email (après vérification si nécessaire), bio et photo de profil.
+- Changement du mot de passe avec vérification de l’ancien mot de passe.
+
+### 🔍 Recherche d’Utilisateurs
+
+- Recherche via un champ permettant de trouver un utilisateur par **pseudo** ou **email**.
+
+---
+
+## 🏗️ Architecture et Technologies
+
+Le projet est développé avec **Laravel**, en suivant les bonnes pratiques de l’écosystème :
+
+- **Laravel 10+**
+- **PHP 8+**
+- **MySQL / PostgreSQL**
+- **Blade Templates**
+- **TailwindCSS** pour le design
+- **JavaScript (ES6+)**
+- Gestion des sessions et authentification sécurisée
+- Implémentation MVC (Model – View – Controller)
+
+---
