@@ -5,6 +5,8 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthSession;
+use App\Http\Middleware\EmailSession;
+use Symfony\Component\Mime\Email;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,7 +23,7 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/landingpage', [AuthController::class, 'landingpage']);
 Route::get('/forgot', [AuthController::class, 'forgot']);
 Route::post('/checkEmail', [AuthController::class, 'checkEmail']);
-Route::get('/changepassword', [AuthController::class, 'newpassword']);
+Route::get('/changepassword', [AuthController::class, 'newpassword'])->middleware(EmailSession::class);
 
 Route::post('/new_password' ,[AuthController::class, 'updatePassword']);
 
