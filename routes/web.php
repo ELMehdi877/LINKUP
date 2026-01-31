@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\AuthSession;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,5 +25,9 @@ Route::get('/changepassword', [AuthController::class, 'newpassword']);
 
 Route::post('/new_password' ,[AuthController::class, 'updatePassword']);
 
-Route::get('/search', [SearchController::class, 'search']);
-Route::get('/profile', [SearchController::class, 'profile']);
+Route::get('/profile', [ProfileController::class, 'profile'])->middleware(AuthSession::class);
+Route::post('/profileUpdateInfo', [ProfileController::class, 'updateInfo']);
+Route::post('/profileUpdatePassword', [ProfileController::class, 'updatePassword']);
+
+Route::get('/search', [SearchController::class, 'search'])->middleware(AuthSession::class);
+Route::get('/showUsers', [SearchController::class, 'showUsers'])->middleware(AuthSession::class);

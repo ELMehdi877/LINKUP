@@ -21,7 +21,9 @@ class AuthController extends Controller
     public function store(Request $request){
         $request->validate([
             'name'=>['required','string', 'min:3'],
+            'pseudo'=>['required','string', 'min:4','unique:users,pseudo'],
             'email'=>['required', 'email', 'unique:users,email'],
+            'bio'=>['nullable', 'string', 'max:500'],
             'password'=>'required|min:6|confirmed',
         ]);
 
@@ -35,7 +37,9 @@ class AuthController extends Controller
         // dd('Validation OK');
         $user = new User();
         $user->name = $request->name;
+        $user->pseudo = $request->pseudo;
         $user->email = $request->email;
+        $user->bio = $request->bio;
         $user->password = Hash::make($request->password);
 
         $user->save();
@@ -75,7 +79,7 @@ class AuthController extends Controller
         if (!$userExiste) {
             return back()->with('error', 'Email incorrect');
         }
-        Session::put('user', $userExiste->id);
+        Session::put('user_email', $userExiste->email);
         return redirect('/changepassword');
     }
 
@@ -89,8 +93,8 @@ class AuthController extends Controller
             'new_password' => ['required', 'string', 'min:6', 'confirmed']
         ]);
 
-        $userID = Session::get('user');
-        $user = User::find($userID);
+        $userEmail = Session::get('user_email');
+        $user = User::where('email', $userEmail)->first();
         $user->password = Hash::make($request->new_password);
         $user->save();
         return redirect('/login');

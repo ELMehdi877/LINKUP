@@ -15,15 +15,15 @@
             </div>  
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-3">
+        <form action="/search" method="GET" class="flex flex-col sm:flex-row gap-3">
             <div class="relative flex-1 group">
                 <span class="absolute left-5 top-1/2 -translate-y-1/2 text-lg opacity-30">🔍</span>
-                <input type="text" placeholder="Pseudo ou email..." class="input-field w-full py-4 lg:py-5 pl-14 pr-6 font-bold text-gray-700">
+                <input type="text" name="inputSearch" placeholder="Pseudo ou email..." class="input-field w-full py-4 lg:py-5 pl-14 pr-6 font-bold text-gray-700">
             </div>
             <button class="bg-black text-white px-4 py-2 lg:py-2 rounded-2xl lg:squircle-sm font-bold text-m shadow-xl shadow-black/10 active:scale-95 transition-all">
                 Rechercher
             </button>
-        </div>
+        </form>
     </section>
 
     <!-- Résultats -->
@@ -34,20 +34,24 @@
                 Suggérés pour vous
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
-                <!-- Carte 1 -->
-                <div class="bg-white squircle-md lg:squircle-lg p-6 lg:p-8 border border-white shadow-premium hover:shadow-xl transition-all duration-300">
-                    <div class="flex items-center gap-4 mb-5">
-                        <img src="https://i.pravatar.cc/150?u=lolita" class="w-14 h-14 rounded-2xl object-cover">
-                        <div>
-                            <h4 class="font-black text-base lg:text-lg">Lolita Earns</h4>
-                            <p class="text-[10px] font-black text-indigo-500 uppercase tracking-widest">@lolita_dev</p>
+                
+                @forelse($users as $user)
+                    <div class="bg-white squircle-md lg:squircle-lg p-6 lg:p-8 border border-white shadow-premium hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center gap-4 mb-5">
+                            <img src="https://i.pravatar.cc/150?u={{ $user->id }}" class="w-14 h-14 rounded-2xl object-cover">
+                            <div>
+                                <h4 class="font-black text-base lg:text-lg">{{ $user->name }}</h4>
+                                <p class="text-[10px] font-black text-indigo-500 uppercase tracking-widest">{{ '@'.$user->pseudo }}</p>
+                            </div>
                         </div>
+                        <p class="text-gray-400 text-xs font-medium mb-6">{{ $user->email }}</p>
+                        <button class="w-full bg-black text-white py-3.5 rounded-xl lg:squircle-sm font-bold text-[10px] uppercase tracking-widest">Ajouter</button>
                     </div>
-                    <p class="text-gray-400 text-xs font-medium mb-6">Designer passionnée par les interfaces minimalistes 🏔️.</p>
-                    <button class="w-full bg-black text-white py-3.5 rounded-xl lg:squircle-sm font-bold text-[10px] uppercase tracking-widest">Ajouter</button>
-                </div>
+                @empty
+                    <p class="text-gray-400 text-sm">Aucun utilisateur trouvé.</p>
+                @endforelse
                 <!-- Carte 2 -->
-                <div class="bg-white squircle-md lg:squircle-lg p-6 lg:p-8 border border-white shadow-premium">
+                <!-- <div class="bg-white squircle-md lg:squircle-lg p-6 lg:p-8 border border-white shadow-premium">
                     <div class="flex items-center gap-4 mb-5">
                         <img src="https://i.pravatar.cc/150?u=anatoly" class="w-14 h-14 rounded-2xl object-cover">
                         <div>
@@ -57,7 +61,7 @@
                     </div>
                     <p class="text-gray-400 text-xs font-medium mb-6">Product Manager @LINKUP. Let's build together.</p>
                     <button class="w-full bg-[#FF6B81] text-white py-3.5 rounded-xl lg:squircle-sm font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-red-100">En attente</button>
-                </div>
+                </div> -->
             </div>
         </div>
 

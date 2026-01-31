@@ -84,6 +84,9 @@
                 <p class="text-gray-400 font-medium px-4 leading-relaxed">
                     Pas d'inquiétude. Entrez votre email pour recevoir un lien de réinitialisation sécurisé.
                 </p>
+                @if(Session('error'))
+                    <p style="color : red">{{Session('error')}}</p>
+                @endif
             </header>
 
             <form action="/checkEmail" method="POST" class="mt-10 space-y-6 text-left relative z-10">

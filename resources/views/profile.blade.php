@@ -18,8 +18,8 @@
                 </button>
             </div>
             <div>
-                <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight">Bogdan Nikitin</h1>
-                <p class="text-gray-400 font-bold tracking-widest uppercase text-[10px] mt-1">@nikitinteam</p>
+                <h1 class="text-3xl lg:text-4xl font-extrabold tracking-tight">{{$user->name}}</h1>
+                <p class="text-gray-400 font-bold tracking-widest text-[10px] mt-1">{{'@'.$user->pseudo}}</p>
                 <div class="flex justify-center md:justify-start gap-2 mt-4">
                     <span class="px-4 py-1.5 bg-gray-100 rounded-full text-[10px] font-black uppercase">🔥 1.2k Woow!!</span>
                     <span class="px-4 py-1.5 bg-blue-50 text-blue-500 rounded-full text-[10px] font-black uppercase tracking-widest">Membre Pro</span>
@@ -31,6 +31,14 @@
         </button>
     </div>
 
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li style="color:red">{{ $error }}</li>
+            @endforeach
+        </ul>
+    @endif
+    
     <!-- Section Formulaire -->
     <div class="grid lg:grid-cols-12 gap-8">
         
@@ -41,31 +49,32 @@
                 Gestion de l'identité
             </h2>
 
-            <form class="space-y-8">
+            <form action="/profileUpdateInfo" method="POST" class="space-y-8">
+                @csrf
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="space-y-3">
                         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Pseudo Unique</label>
-                        <input type="text" value="nikitinteam" class="w-full px-7 py-5 input-field font-bold text-gray-800">
+                        <input type="text" value="{{$user->pseudo}}" name="pseudo" class="w-full px-7 py-5 input-field font-bold text-gray-800">
+                    </div>
+                    <!-- <div class="space-y-3">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Prénom</label>
+                        <input type="text" value="Bogdan" class="w-full px-7 py-5 input-field font-bold text-gray-800">
+                    </div> -->
+                    <div class="space-y-3">
+                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Nom</label>
+                        <input type="text" value="{{$user->name}}" name="name" class="w-full px-7 py-5 input-field font-bold text-gray-800">
                     </div>
                     <div class="space-y-3">
                         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Email</label>
-                        <input type="email" value="bogdan@nikitin.team" class="w-full px-7 py-5 input-field font-bold text-gray-800">
-                    </div>
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Prénom</label>
-                        <input type="text" value="Bogdan" class="w-full px-7 py-5 input-field font-bold text-gray-800">
-                    </div>
-                    <div class="space-y-3">
-                        <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Nom</label>
-                        <input type="text" value="Nikitin" class="w-full px-7 py-5 input-field font-bold text-gray-800">
+                        <input type="email" value="{{$user->email}}" name="email" class="w-full px-7 py-5 input-field font-bold text-gray-800">
                     </div>
                     <div class="md:col-span-2 space-y-3">
                         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Bio & Présentation</label>
-                        <textarea rows="3" class="w-full px-7 py-5 input-field font-bold text-gray-800 leading-relaxed">Hi everyone, today I was on the most beautiful mountain in the world 🏔️. Connect with me for design insights!</textarea>
+                        <textarea rows="3" name="bio" class="w-full px-7 py-5 input-field font-bold text-gray-800 leading-relaxed">{{$user->bio}}</textarea>
                     </div>
                 </div>
                 <div class="pt-6 border-t border-gray-50">
-                    <button class="bg-black text-white px-12 py-5 squircle-md font-bold text-sm shadow-2xl shadow-black/10">Enregistrer les modifications</button>
+                    <button type="submit" class="bg-black text-white px-12 py-5 squircle-md font-bold text-sm shadow-2xl shadow-black/10">Enregistrer les modifications</button>
                 </div>
             </form>
         </div>
@@ -74,7 +83,7 @@
         <div class="lg:col-span-4 space-y-8">
             <div class="bg-white squircle-md lg:squircle-lg p-8 shadow-premium border border-white">
                 <h3 class="text-xl font-bold mb-8">🔐 Sécurité</h3>
-                <form action="/" class="space-y-6">
+                <form action="/profileUpdatePassword" method="POST" class="space-y-6">
                     @csrf
                     <div class="space-y-2">
                         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-2">Mot de passe actuel</label>

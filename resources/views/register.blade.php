@@ -89,10 +89,10 @@
                     </div>
 
                     <!-- Champ 2 : Pseudo -->
-                    <!-- <div>
+                    <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Pseudo Unique</label>
                         <input type="text" name="pseudo" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="@nikitinteam" required>
-                    </div> -->
+                    </div>
 
                     <!-- Champ 3 : Email -->
                     <div>
@@ -100,13 +100,20 @@
                         <input type="email" name="email" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="hello@linkup.com" required>
                     </div>
 
-                    <!-- Champ 4 : Password -->
+                    <!-- Champ 4 : Bio -->
+                    <div>
+                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Biographie</label>
+                        <textarea rows="3" name="bio" class="w-full px-7 py-5 resize-none input-field font-bold text-gray-800 leading-relaxed"></textarea>
+
+                    </div>
+
+                    <!-- Champ 5 : Password -->
                     <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Mot de passe</label>
                         <input type="password" name="password" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••" required>
                     </div>
 
-                    <!-- Champ 5 : Confirm Password -->
+                    <!-- Champ 6 : Confirm Password -->
                     <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Confirmation</label>
                         <input type="password" name="password_confirmation" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••" required>
