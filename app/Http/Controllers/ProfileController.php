@@ -19,11 +19,7 @@ class ProfileController extends Controller
         ]);
 
         $user = User::find($user_id);
-        $user->name = $request->name;
-        $user->pseudo = $request->pseudo;
-        $user->email = $request->email;
-        $user->bio = $request->bio;
-        $user->save();
+        $user->update($request->only(['pseudo', 'name', 'email', 'bio']));
         return redirect('/profile');
         
     }
@@ -44,6 +40,28 @@ class ProfileController extends Controller
         $user_id = Session::get('user');
         $user = User::find($user_id);
         return view('profile', compact('user'));
+    }
+
+    public function profilePhoto(Request $request){
+
+        $request->validate([
+            'photoProfile' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:5000']
+        ]);
+
+        $user_id = Session::get('user');
+        $user = User::find($user_id);
+        //récupérer l'image
+        $image = $request->file('photoProfile');
+
+        //non du profile
+        $imageName = time().'.'.$image->extension();
+
+        //déplacer vers public/profile_photo
+        $image->move(public_path('profile_photo'), $imageName);
+
+        $user->photo = 'profile_photo/'.$imageName;
+        $user->save(); 
+        return redirect('/profile');
     }
     
 }

@@ -15,7 +15,7 @@
             </div>  
         </div>
 
-        <form action="/search" method="GET" class="flex flex-col sm:flex-row gap-3">
+        <form action="/showUsers" method="GET" class="flex flex-col sm:flex-row gap-3">
             <div class="relative flex-1 group">
                 <span class="absolute left-5 top-1/2 -translate-y-1/2 text-lg opacity-30">🔍</span>
                 <input type="text" name="inputSearch" placeholder="Pseudo ou email..." class="input-field w-full py-4 lg:py-5 pl-14 pr-6 font-bold text-gray-700">
@@ -34,11 +34,14 @@
                 Suggérés pour vous
             </h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+                @if(Session('error'))
+                    <p style="color : black">{{Session('error')}}</p>
+                @endif
                 
                 @forelse($users as $user)
                     <div class="bg-white squircle-md lg:squircle-lg p-6 lg:p-8 border border-white shadow-premium hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center gap-4 mb-5">
-                            <img src="https://i.pravatar.cc/150?u={{ $user->id }}" class="w-14 h-14 rounded-2xl object-cover">
+                            <img src="{{ $user->photo }}" class="w-14 h-14 rounded-2xl object-cover">
                             <div>
                                 <h4 class="font-black text-base lg:text-lg">{{ $user->name }}</h4>
                                 <p class="text-[10px] font-black text-indigo-500 uppercase tracking-widest">{{ '@'.$user->pseudo }}</p>

@@ -7,29 +7,21 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-     public function search(Request $request){
-        $input = $request->inputSearch;
-        $user_id = Session::get('user');
-        if ($input) {
-            $users = User::where('id', '!=', $user_id)
-            ->where(function($query) use ($input){
-                $query->where('email', $input)->orwhere('pseudo', $input);
-            })->get();
-            
-            return view('search', compact('users'));
-        }
-        $users = User::where('id', '!=', $user_id)->get();
-        return view('search', compact('users'));
-    }
-
     public function showUsers(Request $request){
-        
+        $user_id = Session::get('user');
         $input = $request->inputSearch;
-        $user = User::where('email',$request->input)->orwhere('pseudo',$request->input);
-    
-        if (!$user) {
-           return back()->with('error', 'aucun utilisateur trouvé');
+        if ($input) {
+            $users = User::where([
+                ['email', 'ILIKE' ,"%{$input}%"],
+                ['id', '!=', $user_id]])->orwhere('pseudo', 'ILIKE' ,"%{$input}%")->get();
+
+            if (!$users) {
+               return back()->with('error', 'aucun utilisateur trouvé');
+            }
         }
-        return view('search', compact('user'));
+        else
+            $users = User::where('id', '!=', $user_id)->get();
+            
+        return view('search', compact('users'));
     }
 }

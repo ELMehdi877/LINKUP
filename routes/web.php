@@ -30,6 +30,7 @@ Route::post('/new_password' ,[AuthController::class, 'updatePassword']);
 Route::get('/profile', [ProfileController::class, 'profile'])->middleware(AuthSession::class);
 Route::post('/profileUpdateInfo', [ProfileController::class, 'updateInfo']);
 Route::post('/profileUpdatePassword', [ProfileController::class, 'updatePassword']);
+Route::post('/profileUpdatePhoto', [ProfileController::class, 'profilePhoto']);
 
 Route::get('/search', [SearchController::class, 'search'])->middleware(AuthSession::class);
 Route::get('/showUsers', [SearchController::class, 'showUsers'])->middleware(AuthSession::class);
