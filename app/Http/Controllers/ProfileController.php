@@ -57,9 +57,9 @@ class ProfileController extends Controller
         $imageName = time().'.'.$image->extension();
 
         //déplacer vers public/profile_photo
-        $image->move(public_path('profile_photo'), $imageName);
+        $image->storeAs('profile_photo', $imageName, 'public' );
 
-        $user->photo = 'profile_photo/'.$imageName;
+        $user->photo = $imageName;
         $user->save(); 
         return redirect('/profile');
     }

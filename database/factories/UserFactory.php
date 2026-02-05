@@ -21,13 +21,17 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+     public function definition(): array
     {
         return [
-            'pseudo' => fake()->name(),
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => static::$password ??= Hash::make('password'),
+            'pseudo' => $this->faker->unique()->userName(),
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'bio' => $this->faker->sentence(),
+            'photo' => ('1770196415.png'),
+            'password' => Hash::make('password'), // mot de passe par défaut
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 

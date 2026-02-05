@@ -40,6 +40,7 @@ class AuthController extends Controller
         $user->pseudo = $request->pseudo;
         $user->email = $request->email;
         $user->bio = $request->bio;
+        $user->photo = "photo_defaut.png";
         $user->password = Hash::make($request->password);
 
         $user->save();
@@ -59,7 +60,7 @@ class AuthController extends Controller
 
         if ($user && Hash::check($request->password, $user->password)) {
             Session::put('user', $user->id);
-            return redirect('/search');
+            return redirect('/showUsers');
         }
 
         return back()->with('error', 'Email ou mot de passe incorrect');

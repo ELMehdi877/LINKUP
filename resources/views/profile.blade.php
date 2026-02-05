@@ -11,7 +11,7 @@
             <div class="relative">
                 <!-- Avatar -->
                 <div class="w-32 h-32 bg-gradient-to-tr from-indigo-500 to-purple-500 rounded-[40px] p-1.5 shadow-2xl">
-                    <img id="profileImagePreview" src="{{ asset($user->photo) }}" class="w-full h-full rounded-[36px] object-cover bg-white">
+                    <img id="profileImagePreview" src="{{ asset('storage/profile_photo/' . $user->photo) }}" class="w-full h-full rounded-[36px] object-cover bg-white">
                 </div>
                 
                 <!-- Status Online -->
@@ -82,7 +82,7 @@
                     </div>
                     <div class="md:col-span-2 space-y-3">
                         <label class="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-4">Bio & Présentation</label>
-                        <textarea rows="3" name="bio" class="w-full px-7 py-5 input-field font-bold text-gray-800 leading-relaxed">{{$user->bio}}</textarea>
+                        <textarea rows="3" name="bio" class="w-full px-7 py-5 input-field font-bold text-gray-800 resize-none leading-relaxed">{{$user->bio}}</textarea>
                     </div>
                 </div>
                 <div class="pt-6 border-t border-gray-50">

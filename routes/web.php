@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthSession;
 use App\Http\Middleware\EmailSession;
@@ -32,5 +33,6 @@ Route::post('/profileUpdateInfo', [ProfileController::class, 'updateInfo']);
 Route::post('/profileUpdatePassword', [ProfileController::class, 'updatePassword']);
 Route::post('/profileUpdatePhoto', [ProfileController::class, 'profilePhoto']);
 
-Route::get('/search', [SearchController::class, 'search'])->middleware(AuthSession::class);
 Route::get('/showUsers', [SearchController::class, 'showUsers'])->middleware(AuthSession::class);
+
+Route::get('/test', [TestController::class, 'explain']);

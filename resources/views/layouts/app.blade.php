@@ -69,7 +69,7 @@
                 <div class="text-xl lg:w-10 lg:h-10 flex items-center justify-center rounded-xl group-hover:bg-gray-100">🏠</div>
                 <span class="hidden lg:block text-sm">Feeds</span>
             </a>
-            <a href="{{url('/search')}}" class="flex-1 lg:flex items-center justify-center lg:justify-start gap-4 px-3 py-3 lg:px-5 lg:py-4 font-bold @yield('nav-search', 'text-gray-400') transition-all">
+            <a href="{{url('/showUsers')}}" class="flex-1 lg:flex items-center justify-center lg:justify-start gap-4 px-3 py-3 lg:px-5 lg:py-4 font-bold @yield('nav-search', 'text-gray-400') transition-all">
                 <div class="text-xl lg:w-10 lg:h-10 flex items-center justify-center rounded-xl">👥</div>
                 <span class="hidden lg:block text-sm">Explorer</span>
             </a>

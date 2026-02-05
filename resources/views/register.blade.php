@@ -100,26 +100,27 @@
                         <input type="email" name="email" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="hello@linkup.com" required>
                     </div>
 
-                    <!-- Champ 4 : Bio -->
-                    <div>
-                        <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Biographie</label>
-                        <textarea rows="3" name="bio" class="w-full px-7 py-5 resize-none input-field font-bold text-gray-800 leading-relaxed"></textarea>
-
-                    </div>
-
+                    
                     <!-- Champ 5 : Password -->
                     <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Mot de passe</label>
                         <input type="password" name="password" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••" required>
                     </div>
-
+                    
                     <!-- Champ 6 : Confirm Password -->
                     <div>
                         <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Confirmation</label>
                         <input type="password" name="password_confirmation" class="w-full px-7 py-5 input-soft text-gray-700 font-semibold" placeholder="••••••••" required>
                     </div>
                 </div>
+                
+                <!-- Champ 4 : Bio -->
+                <div>
+                    <label class="block text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] ml-5 mb-2">Biographie</label>
+                    <textarea rows="3" name="bio" class="w-full px-7 py-5 input-soft resize-none text-gray-700 font-semibold"></textarea>
 
+                </div>
+                
                 <div class="pt-6 flex flex-col md:flex-row items-center justify-between gap-6">
                     <button type="submit" class="btn-dark w-full md:w-auto px-12 py-5 text-white font-bold text-lg shadow-2xl shadow-gray-200">
                         S'inscrire maintenant

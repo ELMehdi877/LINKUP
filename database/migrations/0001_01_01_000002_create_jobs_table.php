@@ -11,37 +11,40 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table)
+        {
             $table->id();
-            $table->string('queue')->index();
-            $table->longText('payload');
-            $table->unsignedTinyInteger('attempts');
-            $table->unsignedInteger('reserved_at')->nullable();
-            $table->unsignedInteger('available_at');
-            $table->unsignedInteger('created_at');
+            $table->text('description')->nullable();
+            $table->string('photo')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->name('posts_users_foreign')->index();
+            $table->timestamps();
         });
 
-        Schema::create('job_batches', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->string('name');
-            $table->integer('total_jobs');
-            $table->integer('pending_jobs');
-            $table->integer('failed_jobs');
-            $table->longText('failed_job_ids');
-            $table->mediumText('options')->nullable();
-            $table->integer('cancelled_at')->nullable();
-            $table->integer('created_at');
-            $table->integer('finished_at')->nullable();
+        Schema::create('comments', function (Blueprint $table) 
+        {
+            $table->id();
+            $table->string('comment');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->name('comments_users_foreign')->index();
+            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade')->name('comments_posts_foreign')->index();
+            $table->timestamps();
         });
 
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('likes', function (Blueprint $table)
+        {
             $table->id();
-            $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->name('likes_users_foreign')->index();
+            $table->foreignId('post_id')->constrained('posts')->onDelete('cascade')->name('likes_posts_foreign')->index();
+            $table->unique(['user_id', 'post_id']);
+            $table->timestamps();
+        });
+
+        Schema::create('like_comments', function (Blueprint $table)
+        {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->name('like_comments_users_foreign')->index();
+            $table->foreignId('comment_id')->constrained('comments')->onDelete('cascade')->name('like_comments_comments_foreign')->index();
+            $table->unique(['user_id', 'comment_id']);
+            $table->timestamps();
         });
     }
 
@@ -50,8 +53,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jobs');
-        Schema::dropIfExists('job_batches');
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('posts');
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('likes');
+        Schema::dropIfExists('like_comments');
     }
 };

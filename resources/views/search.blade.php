@@ -41,14 +41,16 @@
                 @forelse($users as $user)
                     <div class="bg-white squircle-md lg:squircle-lg p-6 lg:p-8 border border-white shadow-premium hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center gap-4 mb-5">
-                            <img src="{{ $user->photo }}" class="w-14 h-14 rounded-2xl object-cover">
+                            <img src="{{ 'storage/profile_photo/'.$user->photo }}" class="w-14 h-14 rounded-2xl object-cover">
                             <div>
                                 <h4 class="font-black text-base lg:text-lg">{{ $user->name }}</h4>
                                 <p class="text-[10px] font-black text-indigo-500 uppercase tracking-widest">{{ '@'.$user->pseudo }}</p>
                             </div>
                         </div>
                         <p class="text-gray-400 text-xs font-medium mb-6">{{ $user->email }}</p>
-                        <button class="w-full bg-black text-white py-3.5 rounded-xl lg:squircle-sm font-bold text-[10px] uppercase tracking-widest">Ajouter</button>
+                        
+                        <button type="submit" class="w-full bg-black text-white py-3.5 rounded-xl lg:squircle-sm font-bold text-[10px] uppercase tracking-widest">Ajouter</button>
+                        <button type="submit" class="w-full bg-red-400 text-white py-3.5 rounded-xl lg:squircle-sm font-bold text-[10px] uppercase tracking-widest">Annuler</button>
                     </div>
                 @empty
                     <p class="text-gray-400 text-sm">Aucun utilisateur trouvé.</p>
